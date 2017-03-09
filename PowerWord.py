@@ -13,7 +13,6 @@ def load():
     filename = fileloadentry.get()
     filecontent = open(filename, "r")
     print(filename)
-    write_text(filecontent.read())
 
 def save():
     newfilecontent = text.get("1.0",'end-1c')
@@ -56,6 +55,8 @@ fileloadentry.pack()
 text = Text(root, height=18)
 scrollbar = ttk.Scrollbar(root)
 linenumbers = pk.LineNumbers(root, text, scrollbar)
+
+write_text("Empty text file. Clear this then you can write your own text then save it!")
 
 loadbutton = Button(root, text="Load", width=10, height=1, command=load)
 
