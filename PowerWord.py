@@ -5,6 +5,7 @@ from tkinter import *
 import pkinter as pk
 from tkinter import ttk
 import tkinter as tk
+import time
 
 def write_text(text_to_print):
     text.insert(INSERT, text_to_print)
@@ -12,6 +13,8 @@ def write_text(text_to_print):
 def load():
     filename = fileloadentry.get()
     filecontent = open(filename, "r")
+    filecontent.read()
+    write_text(filecontent)
     print(filename)
 
 def save():
@@ -21,6 +24,7 @@ def save():
     newfile = open(newfilename, 'w+')
     newfile.write(newfilecontent)
     newfile.close()
+    write_text("\nSaved!")
 
 def clear():
     text.delete('1.0', END)
