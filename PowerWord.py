@@ -6,28 +6,34 @@ import pkinter as pk
 from tkinter import ttk
 import tkinter as tk
 import time
+import os
 
 def write_text(text_to_print):
     text.insert(INSERT, text_to_print)
 
 def load():
-    filename = fileloadentry.get()
+    text.delete('1.0', END)
+    filename = os.path.join(fileDir, 'PowerWordProjects/' + fileloadentry.get() + '') 
     filecontent = open(filename, "r")
-    filecontent.read()
+    filecontent = filecontent.read()
     write_text(filecontent)
     print(filename)
 
 def save():
     newfilecontent = text.get("1.0",'end-1c')
     print(newfilecontent)
-    newfilename = savenameentry.get()
+    newfilepath = 'PowerWordProjects/'
+    newfilename = os.path.join(newfilepath, savenameentry.get() + ".txt")
     newfile = open(newfilename, 'w+')
     newfile.write(newfilecontent)
     newfile.close()
-    write_text("\nSaved!")
+    write_text("\nSaved to PowerWordProjects.")
 
 def clear():
     text.delete('1.0', END)
+
+fileDir = os.path.dirname(os.path.realpath('__file__'))
+print(fileDir)
 
 # Main window
 root = Tk()
@@ -72,10 +78,12 @@ newlabel = Label(root,
 
 newlabel.pack()
 
-savenamelabel = Label(root, text="Name for the new file(remember the .txt at the end!):")
+savenamelabel = Label(root, text="Name for the new file(no need for any file extension.):")
+
 savenamelabel.pack()
 
 savenameentry = Entry(root)
+
 savenameentry.pack()
 
 savebutton = Button(root, width=20, height=1, text="Save", command=save)
