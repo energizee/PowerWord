@@ -23,7 +23,7 @@ def save():
     newfilecontent = text.get("1.0",'end-1c')
     print(newfilecontent)
     newfilepath = 'PowerWordProjects/'
-    newfilename = os.path.join(newfilepath, savenameentry.get() + ".txt")
+    newfilename = os.path.join(newfilepath, savenameentry.get())
     newfile = open(newfilename, 'w+')
     newfile.write(newfilecontent)
     newfile.close()
@@ -78,12 +78,10 @@ newlabel = Label(root,
 
 newlabel.pack()
 
-savenamelabel = Label(root, text="Name for the new file(no need for any file extension.):")
-
+savenamelabel = Label(root, text="Name for the new file(remember the extension):")
 savenamelabel.pack()
 
 savenameentry = Entry(root)
-
 savenameentry.pack()
 
 savebutton = Button(root, width=20, height=1, text="Save", command=save)
